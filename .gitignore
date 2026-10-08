@@ -1,0 +1,24 @@
+# =========================================
+# WORDPRESS CORE
+# =========================================
+
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/xmlrpc.php
+/license.txt
+/readme.html
+
+# =========================================
+# CONFIGURACIÓN LOCAL
+# =========================================
+
+/wp-config.php
+/wp-config-sample.php
+
+# =========================================
+# ARCHIVOS LOCALES
+# =========================================
+
+/.htaccess
