@@ -1,70 +1,23 @@
-<?php
-get_header();
-?>
 
-<main>
+<?php get_header(); ?>
 
-    <?php
-    if ( have_posts() ) :
-        while ( have_posts() ) :
-            the_post();
-    ?>
+<main class="site-main">
+    <?php while ( have_posts() ) : ?>
+        <?php the_post(); ?>
 
-        <h1><?php the_title(); ?></h1>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    <?php the_title(); ?>
+                </h1>
+            </header>
 
-        <?php the_content(); ?>
+            <div class="entry-content">
+                <?php the_content(); ?>
+            </div>
+        </article>
 
-        <?php if ( has_category( 'cafes' ) ) : ?>
-
-            <section>
-                <h2>Ficha de café</h2>
-
-                <?php
-                $origen = get_field( 'origen' );
-                $notas_de_cata = get_field( 'notas_de_cata' );
-                $nivel_de_tueste = get_field( 'nivel_de_tueste' );
-                $precio = get_field( 'precio' );
-                ?>
-
-                <?php if ( $origen ) : ?>
-                    <p>
-                        <strong>Origen:</strong>
-                        <?php echo esc_html( $origen ); ?>
-                    </p>
-                <?php endif; ?>
-
-                <?php if ( $notas_de_cata ) : ?>
-                    <p>
-                        <strong>Notas de cata:</strong>
-                        <?php echo esc_html( $notas_de_cata ); ?>
-                    </p>
-                <?php endif; ?>
-
-                <?php if ( $nivel_de_tueste ) : ?>
-                    <p>
-                        <strong>Nivel de tueste:</strong>
-                        <?php echo esc_html( $nivel_de_tueste ); ?>
-                    </p>
-                <?php endif; ?>
-
-                <?php if ( $precio !== '' && $precio !== null ) : ?>
-                    <p>
-                        <strong>Precio:</strong>
-                        <?php echo esc_html( $precio ); ?> €
-                    </p>
-                <?php endif; ?>
-
-            </section>
-
-        <?php endif; ?>
-
-    <?php
-        endwhile;
-    endif;
-    ?>
-
+    <?php endwhile; ?>
 </main>
 
-<?php
-get_footer();
-?>
+<?php get_footer(); ?>
