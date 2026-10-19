@@ -1,6 +1,8 @@
 /*
 Theme Name: Tueste Norte
-Template: twentytwentyone
+Description: Tema propio para la web de Tueste Norte.
+Version: 1.0
+Author: Olga Pozo García
 */
 
    /*ESTILO GENERAL*/
@@ -449,4 +451,18 @@ body.home .entry-content {
 .subscription-section .wp-block-button__link:hover {
     background-color: #463629 !important;
     color: #f3eee5 !important;
+}
+
+/* Menú principal: enlaces en blanco */
+.primary-navigation a,
+.primary-navigation a:link,
+.primary-navigation a:visited {
+    color: #ffffff !important;
+}
+
+/* Al pasar el ratón, los enlaces se vuelven naranjas */
+.primary-navigation a:hover,
+.primary-navigation a:focus,
+.primary-navigation .current-menu-item > a {
+    color: #c58d55 !important;
 }
