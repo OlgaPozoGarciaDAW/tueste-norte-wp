@@ -1,20 +1,20 @@
 # Tueste Norte
 
-Este proyecto es la web de Tueste Norte que he realizado para la Semana 2 de CodeNode.
+Este proyecto es la web de Tueste Norte, realizada con WordPress para las prácticas de CodeNode.
 
-La web está hecha con WordPress en local usando XAMPP.
+La web está desarrollada en local utilizando XAMPP.
 
-La ruta que he utilizado es:
+La ruta del proyecto es:
 
-C:\xampp\htdocs\tueste-norte-wp
+`C:\xampp\htdocs\tueste-norte-wp`
 
 La web se puede abrir desde:
 
-http://localhost/tueste-norte-wp/
+`http://localhost/tueste-norte-wp/`
 
 ## ¿Qué he hecho?
 
-He pasado la web que hice en la Semana 1 a WordPress.
+He pasado la web que hice en la Semana 1 a WordPress y he continuado desarrollándola en las siguientes semanas.
 
 He creado las páginas:
 
@@ -23,175 +23,214 @@ He creado las páginas:
 - Contacto
 - Blog
 
-También he creado un menú con esas páginas y he puesto Inicio como página principal.
+También he creado un menú de navegación y he configurado Inicio como página principal y Blog como página de entradas.
 
-Además, he creado los cafés usando ACF para que los datos de cada café se puedan modificar desde WordPress sin tener que tocar el código.
+En la Semana 3 he creado un tema propio, un plugin para gestionar el catálogo de cafés y la funcionalidad del café de la semana.
 
-## Tema
+## Tema propio
 
-He creado un tema hijo de Twenty Twenty-One llamado:
+El tema se encuentra en:
 
-tueste-norte
+`wp-content/themes/tueste-norte/`
 
-He utilizado CSS para pasar al tema la imagen y los colores que tenía en la web de la Semana 1.
+He creado un tema propio llamado **Tueste Norte**, sin utilizar un tema hijo ni una plantilla de terceros como base.
 
-También he modificado el footer para añadir un texto propio de Tueste Norte.
+El tema incluye los siguientes archivos:
 
-Los ejercicios de la Semana 2 están dentro de:
+- `style.css`: contiene la información del tema y los estilos.
+- `functions.php`: carga los estilos y configura el menú principal.
+- `header.php`: contiene la cabecera y la navegación.
+- `footer.php`: contiene el pie de página.
+- `index.php`: muestra las entradas generales.
+- `single.php`: muestra las entradas individuales.
+- `archive-cafe.php`: muestra el catálogo de cafés.
+- `single-cafe.php`: muestra la ficha individual de cada café.
 
-wp-content/ejercicios/
+En la cabecera se utiliza `wp_head()` y en el pie de página se utiliza `wp_footer()`.
+
+Los estilos se cargan desde `functions.php` mediante `wp_enqueue_style()`.
+
+Para activar el tema, hay que entrar en **Apariencia → Temas** y activar Tueste Norte.
 
 ## Plugins
 
-### WPForms
+### TN Cafés
 
-Es un plugin de formularios.
+El plugin se encuentra en:
 
-Lo he utilizado para crear el formulario de contacto de la página Contacto.
+`wp-content/plugins/tn-cafes/tn-cafes.php`
 
-Elegí este plugin porque me permite crear el formulario desde WordPress de una forma sencilla.
+Lo he creado para registrar el tipo de contenido personalizado Café y gestionar el catálogo.
 
-### Yoast SEO
+También permite elegir qué café se quiere destacar como café de la semana desde el panel de administración, sin modificar el código.
 
-Es un plugin de SEO.
+Para elegirlo, hay que entrar en:
 
-Lo he utilizado para configurar los datos básicos relacionados con el SEO de la página.
+**Ajustes → Café de la semana**
 
-Lo elegí porque es un plugin conocido y permite hacer esta configuración desde WordPress.
+Se selecciona un café publicado y se pulsa el botón para guardar los cambios.
+
+En la página Inicio he añadido el shortcode:
+
+`[tn_cafe_semana]`
+
+Este shortcode muestra el café seleccionado, su imagen y los datos disponibles de su ficha.
+
+El plugin registra el tipo de contenido `cafe` y utiliza `cafes` como base de su ruta pública y de la API REST.
+
+### TN Ejercicios
+
+El plugin se encuentra en:
+
+`wp-content/plugins/tn-ejercicios/tn-ejercicios.php`
+
+Lo he creado para realizar los ejercicios de WordPress. Incluye un filtro que modifica la longitud de los extractos y una acción que añade un comentario HTML con la fecha en el pie de página.
 
 ### Advanced Custom Fields (ACF)
 
-Es un plugin para crear campos personalizados.
+Es un plugin que permite crear campos personalizados.
 
-Lo he utilizado para crear la información de los cafés.
+Lo he utilizado para añadir información específica a cada café y permitir que se pueda editar desde WordPress.
 
-## Cafés
+### WPForms
 
-He creado una categoría llamada:
+Lo he utilizado para crear el formulario de contacto de la página Contacto.
 
-Cafés
+El formulario incluye los campos de nombre, correo electrónico y mensaje.
 
-También he creado en ACF un grupo de campos llamado:
+### Yoast SEO
 
-Ficha de café
+Lo he utilizado para configurar aspectos básicos relacionados con el posicionamiento de la web.
 
-Los campos que tiene son:
+## Catálogo de cafés
 
-- Origen
-- Notas de cata
-- Nivel de tueste
-- Precio
+He creado un tipo de contenido personalizado llamado `cafe`, registrado desde el plugin TN Cafés.
 
-El nivel de tueste puede ser:
-
-- Claro
-- Medio
-- Oscuro
-
-He creado cuatro cafés:
+El catálogo incluye cuatro cafés:
 
 - Etiopía
 - Colombia
 - Brasil
 - Guatemala
 
-Los datos de cada café se pueden rellenar desde la edición de la entrada.
+Cada café tiene título, descripción, imagen destacada y una ficha con los campos personalizados de ACF:
 
-En la plantilla single.php he hecho que la ficha solo aparezca en las entradas que pertenecen a la categoría Cafés.
+- `origen`
+- `notas_cata`
+- `nivel_tueste`
+- `precio`
 
-También he puesto comprobaciones para que los campos vacíos no se muestren.
+El nivel de tueste puede ser claro, medio u oscuro.
 
-## Usuario de Marta
+La plantilla `archive-cafe.php` muestra el catálogo completo y `single-cafe.php` muestra la ficha individual de cada café.
+
+Los datos se pueden modificar desde WordPress sin tener que cambiar las plantillas.
+
+## Café de la semana
+
+He añadido una opción de configuración para seleccionar el café que se quiere destacar.
+
+La selección se guarda en las opciones de WordPress y solo permite elegir un café publicado.
+
+He elegido esta solución porque permite cambiar el café destacado desde el panel de administración sin modificar el código ni tener que editar la página Inicio cada semana.
+
+El shortcode `[tn_cafe_semana]` muestra el café elegido, su imagen, su descripción y los campos personalizados disponibles.
+
+## API REST
+
+El tipo de contenido `cafe` tiene activada la opción `show_in_rest` y utiliza `cafes` como base de la API.
+
+La dirección para consultar los cafés es:
+
+`http://localhost/tueste-norte-wp/wp-json/wp/v2/cafes`
+
+También se puede consultar un café concreto mediante su slug. Por ejemplo, para Etiopía:
+
+`http://localhost/tueste-norte-wp/wp-json/wp/v2/cafes?slug=etiopia`
+
+La respuesta incluye información como el título, el contenido, la imagen destacada y los campos personalizados de ACF.
+
+Un fragmento de la respuesta real de Etiopía es:
+
+```json
+[
+  {
+    "id": 76,
+    "slug": "etiopia",
+    "title": {
+      "rendered": "Etiopía"
+    },
+    "featured_media": 82,
+    "acf": {
+      "origen": "Etiopía",
+      "notas_cata": "Frutos rojos, jazmín y cítricos.",
+      "nivel_tueste": "claro",
+      "precio": 12.5
+    }
+  }
+]
+```
+
+## Usuario y permisos
 
 He creado un usuario llamado Marta con el rol Editor.
 
-Le he puesto este rol porque puede gestionar el contenido de la web, pero no necesita tener todos los permisos de un Administrador.
+He elegido este rol porque permite gestionar el contenido de la web sin conceder todos los permisos de un administrador.
 
 ## Blog
 
-También he creado una entrada normal que no es un café:
+También he creado una entrada normal llamada:
 
-Cómo preparar un buen café en casa
+**Cómo preparar un buen café en casa**
 
-La he creado para comprobar que las entradas normales funcionan correctamente y no muestran la ficha de café.
-
-## Formulario de contacto
-
-En la página Contacto he añadido un formulario con:
-
-- Nombre
-- Correo electrónico
-- Comentario o mensaje
+La he utilizado para comprobar que las entradas normales funcionan de forma independiente del catálogo de cafés.
 
 ## Configuración de WordPress
 
 La base de datos utilizada es:
 
-tueste_norte
+`tueste_norte`
 
-El cotejamiento utilizado es:
+El cotejamiento es:
 
-utf8mb4_unicode_ci
+`utf8mb4_unicode_ci`
 
-Los enlaces permanentes están configurados como:
-
-Nombre de la entrada
-
-También he dejado WP_DEBUG activado porque la tarea lo pide.
+Los enlaces permanentes están configurados como **Nombre de la entrada**.
 
 La página Inicio está configurada como portada y Blog como página de entradas.
 
-## Archivos que se suben al repositorio
+## Archivos del repositorio
 
-En el repositorio se suben principalmente los archivos que he creado o modificado para el proyecto.
+En el repositorio se incluyen principalmente los archivos creados o modificados para el proyecto.
 
-La carpeta más importante es:
+Entre ellos se encuentran:
 
-wp-content/
+- El tema propio.
+- Los plugins desarrollados.
+- Los ejercicios y la documentación.
+- La exportación de la base de datos: `db/tueste-norte.sql`.
 
-Ahí están el tema, los plugins y los ejercicios.
+No se incluye el núcleo de WordPress ni el archivo `wp-config.php`, que contiene la configuración de la instalación y los datos de conexión con la base de datos.
 
-También se incluye:
-
-db/tueste-norte.sql
-
-Este archivo es la exportación de la base de datos.
-
-## Archivos que no se suben
-
-No se sube el núcleo de WordPress porque se puede descargar de nuevo cuando se quiera instalar el proyecto.
-
-Tampoco se sube:
-
-wp-config.php
-
-porque contiene la configuración de la instalación y los datos de conexión con la base de datos.
-
-Por eso he utilizado el archivo .gitignore para excluir estos archivos.
+Se utiliza `.gitignore` para excluir los archivos que no deben formar parte del repositorio.
 
 ## Restaurar el proyecto
 
-Para volver a instalar el proyecto en otro ordenador haría lo siguiente:
+Para instalar el proyecto en otro ordenador:
 
 1. Instalar XAMPP y activar Apache y MySQL.
-2. Descargar WordPress.
-3. Colocar WordPress dentro de la carpeta htdocs.
-4. Copiar la carpeta wp-content de este proyecto.
-5. Crear una base de datos llamada tueste_norte desde phpMyAdmin.
-6. Importar el archivo db/tueste-norte.sql.
-7. Crear el archivo wp-config.php con los datos de la nueva base de datos.
-8. Comprobar que la dirección de la web coincide con la nueva dirección local.
-9. Entrar en WordPress y comprobar que las páginas, entradas, tema y plugins funcionan correctamente.
-
-Si la URL cambia, habría que revisar las direcciones guardadas en WordPress para adaptarlas a la nueva instalación.
+2. Descargar WordPress y colocarlo en la carpeta `htdocs`.
+3. Copiar los archivos del proyecto respetando su estructura.
+4. Crear una base de datos llamada `tueste_norte` desde phpMyAdmin.
+5. Importar `db/tueste-norte.sql`.
+6. Crear `wp-config.php` con los datos de conexión de la nueva instalación.
+7. Comprobar la dirección de la web y adaptarla si es necesario.
+8. Entrar en WordPress y comprobar que el tema y los plugins están instalados y activados.
+9. Guardar los cambios en **Ajustes → Enlaces permanentes** para actualizar las rutas.
+10. Comprobar las páginas, el catálogo, el café de la semana y la API REST.
 
 ## Documentación
 
-En la carpeta docs estarán las capturas de la entrega.
+La carpeta `docs` se utiliza para guardar las capturas de la entrega.
 
-Las capturas mostrarán:
-
-- Las páginas y el menú.
-- El grupo de campos de ACF.
-- La edición de un café.
-- El resultado del café en la web.
+La carpeta `ejercicios` contiene la documentación de los ejercicios realizados.
