@@ -466,3 +466,77 @@ body.home .entry-content {
 .primary-navigation .current-menu-item > a {
     color: #c58d55 !important;
 }
+
+/* CABECERA: título claro y sin subrayado */
+.site-header .site-title,
+.site-header .site-title a,
+.site-header .site-title a:visited {
+    color: #f4eadc !important;
+    text-decoration: none !important;
+}
+
+/* MENÚ: sin puntos de lista */
+.primary-navigation ul,
+.primary-navigation li {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+
+.primary-navigation ul {
+    margin: 0;
+    padding: 0;
+}
+
+.primary-navigation li::marker {
+    content: "";
+}
+
+/* MENÚ: enlaces blancos y sin subrayado */
+.primary-navigation a,
+.primary-navigation a:link,
+.primary-navigation a:visited {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+.primary-navigation a:hover,
+.primary-navigation a:focus,
+.primary-navigation .current-menu-item > a {
+    color: #c58d55 !important;
+}
+
+/* FICHA: imagen destacada */
+.cafe-imagen {
+    max-width: 850px;
+    margin: 30px auto;
+}
+
+.cafe-imagen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* FICHA: texto oscuro sobre fondo claro */
+.single-cafe .entry-title,
+.single-cafe .entry-content,
+.single-cafe .ficha-cafe,
+.single-cafe .ficha-cafe h2,
+.single-cafe .ficha-cafe p {
+    color: #25241f !important;
+}
+/* Imagen destacada de las fichas de café */
+.cafe-imagen {
+    display: block;
+    width: 100%;
+    max-width: 750px;
+    margin: 30px auto;
+}
+
+.cafe-imagen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
